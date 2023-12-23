@@ -1,10 +1,10 @@
-package com.ficafrio.ficafrio.entities.agenda;
+package com.ficafrio.ficafrio.agenda;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.ficafrio.ficafrio.entities.tarefa.tarefaEntity;
 import com.ficafrio.ficafrio.services.agendaServices.agendaRequestDTO;
+import com.ficafrio.ficafrio.tarefa.tarefaEntity;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;

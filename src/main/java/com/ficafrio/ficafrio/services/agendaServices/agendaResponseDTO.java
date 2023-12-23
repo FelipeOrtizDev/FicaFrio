@@ -2,8 +2,8 @@ package com.ficafrio.ficafrio.services.agendaServices;
 
 import java.util.Set;
 
-import com.ficafrio.ficafrio.entities.agenda.agendaEntity;
-import com.ficafrio.ficafrio.entities.tarefa.tarefaEntity;
+import com.ficafrio.ficafrio.agenda.agendaEntity;
+import com.ficafrio.ficafrio.tarefa.tarefaEntity;
 
 public record agendaResponseDTO(Integer idagendas, String nomeagenda, String descricaoagenda, Set<tarefaEntity> tarefas_fk,
         String prioridade, int quantidadetarefas, int tarefasconcluidas) {

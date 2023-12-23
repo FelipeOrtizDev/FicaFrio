@@ -1,4 +1,4 @@
-package com.ficafrio.ficafrio.entities.tarefa;
+package com.ficafrio.ficafrio.tarefa;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

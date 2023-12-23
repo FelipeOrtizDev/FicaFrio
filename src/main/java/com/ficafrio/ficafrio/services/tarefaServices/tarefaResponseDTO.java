@@ -2,7 +2,7 @@ package com.ficafrio.ficafrio.services.tarefaServices;
 
 import java.time.LocalDate;
 
-import com.ficafrio.ficafrio.entities.tarefa.tarefaEntity;
+import com.ficafrio.ficafrio.tarefa.tarefaEntity;
 
 public record tarefaResponseDTO(Integer idtarefa, String nometarefa, String descricaotarefa, LocalDate dataentrega,
         String imagemperiodo) {

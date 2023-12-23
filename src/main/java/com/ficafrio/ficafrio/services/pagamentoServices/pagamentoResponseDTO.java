@@ -2,7 +2,7 @@ package com.ficafrio.ficafrio.services.pagamentoServices;
 
 import java.time.LocalDate;
 
-import com.ficafrio.ficafrio.entities.pagamento.pagamentoEntity;
+import com.ficafrio.ficafrio.pagamento.pagamentoEntity;
 
 public record pagamentoResponseDTO(Integer idpagamento, String nomecarta, String numerocarta, LocalDate validade) {
 

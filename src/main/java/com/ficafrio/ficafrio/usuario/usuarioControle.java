@@ -1,4 +1,4 @@
-package com.ficafrio.ficafrio.controllers;
+package com.ficafrio.ficafrio.usuario;
 
 import java.util.Optional;
 
@@ -14,32 +14,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ficafrio.ficafrio.entities.usuario.UsuarioModelo;
-import com.ficafrio.ficafrio.entities.usuario.UsuarioRepositorio;
+import com.ficafrio.ficafrio.services.usuarioServices.usuarioRequestDTO;
+import com.ficafrio.ficafrio.services.usuarioServices.usuarioResponseDTO;
+
 import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/usuario")
 @CrossOrigin(origins = "*")
 
-public class UsuarioControle {
+public class usuarioControle {
 
     @Autowired
-    private UsuarioRepositorio ur;
+    private usuarioRepositorio usuarioRepositorio;
 
-    // Rota remover Usuario
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/remover/{idusuario}")
     public void removerUsuario(@PathVariable int idusuario) {
-        ur.deleteById(idusuario);
+        usuarioRepositorio.deleteById(idusuario);
     }
 
-    // Rota alterar Usuario
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @Transactional
     @PutMapping("/alterar")
-    public ResponseEntity<?> alterarUsuario(@RequestBody UsuarioModelo um) {
-        Optional<UsuarioModelo> optionalProduct = ur.findById(um.getIdusuario());
+    public ResponseEntity<?> alterarUsuario(@RequestBody usuarioEntity um) {
+        Optional<usuarioEntity> optionalProduct = usuarioRepositorio.findById(um.getIdusuario());
         if (optionalProduct.isPresent()) {
-            UsuarioModelo usuarioUpdate = optionalProduct.get();
+            usuarioEntity usuarioUpdate = optionalProduct.get();
             usuarioUpdate.setIdusuario(um.getIdusuario());
             usuarioUpdate.setEmail(um.getEmail());
             usuarioUpdate.setSenha(um.getSenha());
@@ -55,28 +56,30 @@ public class UsuarioControle {
         }
     }
 
-    // rota cadastrar Usuario
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/cadastrar")
-    public void saveUsuario(@RequestBody UsuarioModelo data) {
-        UsuarioModelo UsuarioData = new UsuarioModelo(data);
-        ur.save(UsuarioData);
+    public void saveUsuario(@RequestBody usuarioRequestDTO data) {
+        usuarioEntity UsuarioData = new usuarioEntity(data);
+        usuarioRepositorio.save(UsuarioData);
     }
 
-    // rota listar Usuarios
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/listar")
-    public Iterable<UsuarioModelo> listarUsuarios() {
-        return ur.findAll();
+    public Iterable<usuarioEntity> listarUsuarios() {
+        return usuarioRepositorio.findAll();
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/login")
-    public ResponseEntity<?> loginUsuario(@RequestBody UsuarioModelo credenciais) {
-        Optional<UsuarioModelo> usuario = ur.findByUsuario(credenciais.getUsuario());
+    public ResponseEntity<?> loginUsuario(@RequestBody usuarioRequestDTO credenciais) {
+        usuarioEntity usuarioEntityCredenciais = new usuarioEntity(credenciais);
+        Optional<usuarioEntity> usuario = usuarioRepositorio.findByUsuario(usuarioEntityCredenciais.getUsuario());
 
-        if (usuario.isEmpty() || !usuario.get().getSenha().equals(credenciais.getSenha())) {
+        if (usuario.isEmpty() || !usuario.get().getSenha().equals(usuarioEntityCredenciais.getSenha())) {
             return ResponseEntity.badRequest().body("Usuário ou senha inválidos");
         }
 
-        UsuarioModelo resposta = new UsuarioModelo();
+        usuarioEntity resposta = new usuarioEntity();
         resposta.setIdusuario(usuario.get().getIdusuario());
         resposta.setEmail(usuario.get().getEmail());
         resposta.setSenha(usuario.get().getSenha());
@@ -86,14 +89,14 @@ public class UsuarioControle {
         resposta.setTelefone(usuario.get().getTelefone());
         resposta.setAgendas_fk(usuario.get().getAgendas_fk());
         resposta.setDatanascimento(usuario.get().getDatanascimento());
-        
+
         System.out.println(resposta);
         return ResponseEntity.ok(resposta);
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/getuserinfo/{id}")
-    public UsuarioModelo getUserById(@PathVariable UsuarioModelo id) {
-        UsuarioModelo usuario = ur.findByUsuario1(id.getUsuario());
-        return usuario;
+    public usuarioResponseDTO getUserById(@PathVariable usuarioEntity id) {
+        return usuarioRepositorio.findByUsuarioId(id.getUsuario());
     }
 }

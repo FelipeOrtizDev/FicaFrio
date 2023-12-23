@@ -1,4 +1,4 @@
-package com.ficafrio.ficafrio.controllers;
+package com.ficafrio.ficafrio.agenda;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ficafrio.ficafrio.services.GPT_API.chatGPT_API;
 import com.ficafrio.ficafrio.services.agendaServices.agendaRequestDTO;
 import com.ficafrio.ficafrio.services.agendaServices.agendaResponseDTO;
-import com.ficafrio.ficafrio.entities.agenda.agendaEntity;
-import com.ficafrio.ficafrio.entities.agenda.agendaRepository;
 
 import jakarta.transaction.Transactional;
 

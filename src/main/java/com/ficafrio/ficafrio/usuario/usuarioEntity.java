@@ -1,10 +1,11 @@
-package com.ficafrio.ficafrio.entities.usuario;
+package com.ficafrio.ficafrio.usuario;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.ficafrio.ficafrio.entities.agenda.agendaEntity;
-import com.ficafrio.ficafrio.entities.pagamento.pagamentoEntity;
+import com.ficafrio.ficafrio.agenda.agendaEntity;
+import com.ficafrio.ficafrio.pagamento.pagamentoEntity;
+import com.ficafrio.ficafrio.services.usuarioServices.usuarioRequestDTO;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Entity;
@@ -27,13 +28,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode( of = "idusuario")
+@EqualsAndHashCode(of = "idusuario")
 @ToString
-public class UsuarioModelo {
+public class usuarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idusuario;
+    private Integer idusuario;
     @Nonnull
     private String email;
     @Nonnull
@@ -48,16 +49,14 @@ public class UsuarioModelo {
     private Set<agendaEntity> agendas_fk = new HashSet<>();
     private String datanascimento;
 
-    public UsuarioModelo(UsuarioModelo data) {
-        this.email = data.getEmail();
-        this.senha = data.getSenha();
-        this.usuario = data.getUsuario();
-        this.endereco = data.getEndereco();
-        this.pagamento_fk = data.getPagamento_fk();
-        this.telefone = data.getTelefone();
-        this.agendas_fk = data.getAgendas_fk();
-        this.datanascimento = data.getDatanascimento();
+        public usuarioEntity(usuarioRequestDTO data) {
+        this.email = data.email();
+        this.senha = data.senha();
+        this.usuario = data.usuario();
+        this.endereco = data.endereco();
+        this.pagamento_fk = data.pagamento_fk();
+        this.telefone = data.telefone();
+        this.agendas_fk = data.agendas_fk();
+        this.datanascimento = data.datanascimento();
     }
-
-    
 }

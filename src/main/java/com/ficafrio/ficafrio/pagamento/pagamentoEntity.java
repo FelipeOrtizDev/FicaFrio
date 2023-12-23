@@ -1,4 +1,4 @@
-package com.ficafrio.ficafrio.entities.pagamento;
+package com.ficafrio.ficafrio.pagamento;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package com.ficafrio.ficafrio.controllers;
+package com.ficafrio.ficafrio.pagamento;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ficafrio.ficafrio.entities.pagamento.pagamentoEntity;
-import com.ficafrio.ficafrio.entities.pagamento.pagamentoRepository;
 import com.ficafrio.ficafrio.services.pagamentoServices.pagamentoRequestDTO;
 import com.ficafrio.ficafrio.services.pagamentoServices.pagamentoResponseDTO;
 

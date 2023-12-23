@@ -11,9 +11,9 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ficafrio.ficafrio.entities.agenda.agendaEntity;
-import com.ficafrio.ficafrio.entities.tarefa.tarefaEntity;
+import com.ficafrio.ficafrio.agenda.agendaEntity;
 import com.ficafrio.ficafrio.services.agendaServices.agendaRequestDTO;
+import com.ficafrio.ficafrio.tarefa.tarefaEntity;
 
 public class chatGPT_API {
 
